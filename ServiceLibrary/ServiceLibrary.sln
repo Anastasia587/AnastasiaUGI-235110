@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLibrary", "ServiceLibrary\ServiceLibrary.csproj", "{F71DBB70-E884-4E3A-B73E-7DFCBA92669F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicemanUnitTest", "ServicemanUnitTest\ServicemanUnitTest.csproj", "{4E47F26D-68F7-42D1-BB02-175F54B1B764}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F71DBB70-E884-4E3A-B73E-7DFCBA92669F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F71DBB70-E884-4E3A-B73E-7DFCBA92669F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F71DBB70-E884-4E3A-B73E-7DFCBA92669F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F71DBB70-E884-4E3A-B73E-7DFCBA92669F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E47F26D-68F7-42D1-BB02-175F54B1B764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E47F26D-68F7-42D1-BB02-175F54B1B764}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E47F26D-68F7-42D1-BB02-175F54B1B764}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E47F26D-68F7-42D1-BB02-175F54B1B764}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C543E1E3-622A-48CD-A5AF-DC98BFEFAD78}
+	EndGlobalSection
+EndGlobal

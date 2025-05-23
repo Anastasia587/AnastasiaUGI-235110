@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRLibrary", "HRLibrary\HRLibrary.csproj", "{6A705896-D866-4862-A8D4-B6C3645A3D97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HRLibrary.UnitTeests", "HRLibrary.UnitTeests\HRLibrary.UnitTeests.csproj", "{3F3CFE2A-A4A8-4E5D-87BA-1B91D4A9FAE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A705896-D866-4862-A8D4-B6C3645A3D97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A705896-D866-4862-A8D4-B6C3645A3D97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A705896-D866-4862-A8D4-B6C3645A3D97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A705896-D866-4862-A8D4-B6C3645A3D97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F3CFE2A-A4A8-4E5D-87BA-1B91D4A9FAE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F3CFE2A-A4A8-4E5D-87BA-1B91D4A9FAE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F3CFE2A-A4A8-4E5D-87BA-1B91D4A9FAE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F3CFE2A-A4A8-4E5D-87BA-1B91D4A9FAE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {36A364B3-68EA-48BF-970D-52C3FD9D48D8}
+	EndGlobalSection
+EndGlobal
