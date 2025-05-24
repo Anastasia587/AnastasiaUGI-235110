@@ -44,4 +44,77 @@ namespace ServiceLibrary
             return info;
         }
     }
+    public class CommandStaff : Serviceman
+    {
+        public string Division { get; set; } 
+        public string Position { get; set; } 
+
+        public CommandStaff(string name, string surname, string militaryId, string unitNumber,
+            string enlistmentDate, ServiceType service, string rank,
+                            string division, string position)
+            : base(name, surname, militaryId, rank, unitNumber, enlistmentDate, service)
+        {
+            Division = division;
+            Position = position;
+        }
+        public override string[] GetInfo()
+        {
+            var baseInfo = base.GetInfo();
+            var info = new string[4];
+            info[0] = baseInfo[0];
+            info[1] = baseInfo[1];
+            info[2] = $"Подразделение: {Division}";
+            info[3] = $"Должность: {Position}";
+            return info;
+        }
+    }
+    public class ManagementBody : Serviceman
+    {
+        public string District { get; set; } 
+        public string Position { get; set; } 
+
+        public ManagementBody(string name, string surname, string militaryId, string rank, string unitNumber, 
+            string enlistmentDate, ServiceType service, string district, string position)
+            : base(name, surname, militaryId, rank, unitNumber,
+            enlistmentDate, service)
+        {
+            District = district;
+            Position = position;
+        }
+
+        public override string[] GetInfo()
+        {
+            var baseInfo = base.GetInfo();
+            var info = new string[4];
+            info[0] = baseInfo[0];
+            info[1] = baseInfo[1];
+            info[2] = $"Округ: {District}";
+            info[3] = $"Должность: {Position}";
+            return info;
+        }
+    }
+    public class Veteran : Serviceman
+    {
+        public int YearsOfService { get; set; } 
+        public decimal PensionAmount { get; set; } 
+
+        public Veteran(string name, string surname, string militaryId, string rank, string unitNumber,
+            string enlistmentDate, ServiceType service, int yearsOfService, decimal pensionAmount)
+            : base(name, surname, militaryId, rank, unitNumber,enlistmentDate, service)
+        {
+            YearsOfService = yearsOfService;
+            PensionAmount = pensionAmount;
+        }
+
+        public override string[] GetInfo()
+        {
+            var baseInfo = base.GetInfo();
+            var info = new string[4];
+            info[0] = baseInfo[0];
+            info[1] = baseInfo[1];
+            info[2] = $"Выслуга лет: {YearsOfService}";
+            info[3] = $"Размер пенсии: {PensionAmount} руб.";
+            return info;
+        }
+    }
 }
