@@ -30,8 +30,8 @@ namespace ServicemanUnitTest
 
             Assert.That(info.Length, Is.EqualTo(2));
             Assert.That(info[0], Is.EqualTo("Иван Иванов, звание: Сержант, часть: 12345"));
-            Assert.That(info[1], Is.EqualTo(
-                $"Военный билет: AB123456. Дата поступления на службу: 10.05.2020. Тип службы: контрактная. Срок службы: {DateTime.Now.Year - 2020} лет."));
+            Assert.That(info[1], Is.EqualTo($"Военный билет: AB123456. Дата поступления на службу: 10.05.2020. " +
+                $"Тип службы: контрактная. Срок службы: {DateTime.Now.Year - 2020} лет."));
         }
 
         private Serviceman CreateTestServiceman()
@@ -62,18 +62,18 @@ namespace ServicemanUnitTest
                 "Подразделение: Морская пехота",
                 "Должность: Командир"
              };
-            var info = leader.GetInfo(); 
-            Assert.That(info.Length, Is.EqualTo (4));
+            var info = leader.GetInfo();
+            Assert.That(info.Length, Is.EqualTo(4));
 
             for (var i = 0; i < info.Length; i++)
                 Assert.That(info[i], Is.EqualTo(lines[i]));
-        } 
+        }
 
         private CommandStaff GetTestStaffMember()
         {
             var staffmember = new CommandStaff("Наталья", "Прибрежная", "AB123456", "54987",
           "10.05.2003", ServiceType.Contract, "Командир пехоты", "Морская пехота", "Командир");
-                return staffmember;
+            return staffmember;
         }
 
     }
@@ -144,6 +144,73 @@ namespace ServicemanUnitTest
             return new Veteran(
                 "Петр", "Петров", "CD789012", "Полковник", "67890",
                 "15.03.2000", ServiceType.Contract, 45, 15000);
+        }
+    }
+
+    [TestFixture]
+    public class ServicemanComparisonTests
+    {
+        [Test]
+        public void CompareToTest()
+        {
+            var boris = new Serviceman("Борис", "Алексеев", "AB123459", "Рядовой","12345", 
+                "10.05.2021", ServiceType.Conscription);
+            var alexey = new Serviceman("Алексей", "Сидоров", "AB123458", "Капитан","12345", 
+                "10.05.2018", ServiceType.Contract);
+            var ivan = new Serviceman("Иван", "Иванов", "AB123456", "Сержант","12345", 
+                "10.05.2020", ServiceType.Contract);
+            var petr = new Serviceman("Петр", "Петров", "AB123457", "Лейтенант","54321", 
+                "10.05.2019", ServiceType.Contract);
+
+            Assert.That(petr.CompareTo(ivan), Is.GreaterThan(0)); 
+            Assert.That(ivan.CompareTo(petr), Is.LessThan(0));   
+            Assert.That(boris.CompareTo(ivan), Is.LessThan(0));  
+            Assert.That(alexey.CompareTo(boris), Is.GreaterThan(0)); 
+
+            var ivan2 = new Serviceman("Иван", "Иванов", "XX000000", "Рядовой","12345", 
+                "01.01.2020", ServiceType.Conscription);
+
+            Assert.That(ivan.CompareTo(ivan2), Is.EqualTo(0)); 
+        }
+    }
+    [TestFixture]
+    public class MilitaryUnitTests
+    {
+        private MilitaryUnit unit;
+        private Serviceman[] servicemen;
+
+        [SetUp]
+        public void Setup()
+        {
+            servicemen = new Serviceman[]
+            {
+            new Serviceman("Иван", "Иванов", "AB123456", "Сержант", "12345", "10.05.2020", ServiceType.Contract),
+            new Serviceman("Петр", "Петров", "AB123457", "Лейтенант", "12345", "10.05.2019", ServiceType.Contract),
+            new Serviceman("Алексей", "Сидоров", "AB123458", "Капитан", "54321", "10.05.2018", ServiceType.Contract),
+            new Serviceman("Иван", "Иванов", "AB123456", "Сержант", "12345", "10.05.2020", ServiceType.Contract)
+            };
+
+            unit = new MilitaryUnit("Первая рота", "12345", servicemen);
+        }
+        [Test]
+        public void ConstructorTest()
+        {
+            Assert.That(unit.Name, Is.EqualTo("Первая рота"));
+            Assert.That(unit.UnitNumber, Is.EqualTo("12345"));
+
+            Assert.That(unit.Count, Is.EqualTo(2));
+        }
+        [Test]
+        public void IEnumerableTest()
+        {
+            var expectedMembers = servicemen
+                .Where(s => s.UnitNumber == "12345")
+                .Distinct()
+                .ToArray();
+
+            var i = 0;
+            foreach (var serviceman in unit)
+                Assert.That(serviceman, Is.SameAs(expectedMembers[i++]));
         }
     }
 }

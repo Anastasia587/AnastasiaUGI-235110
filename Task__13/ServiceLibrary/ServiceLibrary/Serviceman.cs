@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ServiceLibrary
 {
-    public class Serviceman
+    public class Serviceman : IComparable<Serviceman>
     {
         public string Name { get; set; }
         public string Surname { get; set; }
@@ -33,6 +34,26 @@ namespace ServiceLibrary
             EnlistmentDate = parsedDate;
         }
 
+        public int CompareTo(Serviceman other)
+        {
+            if (other == null) return 1;
+            int unitCompare = UnitNumber.CompareTo(other.UnitNumber);
+            if (unitCompare != 0) return unitCompare;
+
+            int surnameCompare = Surname.CompareTo(other.Surname);
+            if (surnameCompare != 0) return surnameCompare;
+
+            return Name.CompareTo(other.Name);
+        }
+        public override bool Equals(object obj)
+        {
+            return obj is Serviceman serviceman &&
+                   MilitaryId == serviceman.MilitaryId;
+        }
+        public override int GetHashCode()
+        {
+            return MilitaryId.GetHashCode();
+        }
         public virtual string[] GetInfo()
         {
             var info = new string[2];
@@ -116,5 +137,30 @@ namespace ServiceLibrary
             info[3] = $"Размер пенсии: {PensionAmount} руб.";
             return info;
         }
+    }
+
+    public class MilitaryUnit : IEnumerable<Serviceman>
+    {
+        public string Name { get; set; }
+        public string UnitNumber { get; set; }
+        private List<Serviceman> servicemen;
+
+        public int Count => servicemen.Count;
+
+        public MilitaryUnit(string name, string unitNumber, IEnumerable<Serviceman> servicemen)
+        {
+            Name = name;
+            UnitNumber = unitNumber;
+            this.servicemen = new List<Serviceman>();
+
+            foreach (var serviceman in servicemen)
+            {
+                if (serviceman.UnitNumber == UnitNumber && !this.servicemen.Contains(serviceman))
+                    this.servicemen.Add(serviceman);
+            }
+        }
+
+        public IEnumerator<Serviceman> GetEnumerator() => servicemen.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }
